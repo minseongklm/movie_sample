@@ -1,7 +1,7 @@
-package com.minseongkim.movie_sample.presentation
+package com.minseongkim.movie_sample.presentation.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.minseongkim.movie_sample.R
 
 /**

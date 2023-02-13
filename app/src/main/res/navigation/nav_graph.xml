@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.minseongkim.movie_sample.presentation.HomeFragment"
+        android:name="com.minseongkim.movie_sample.presentation.ui.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -26,22 +26,22 @@
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.minseongkim.movie_sample.presentation.DetailFragment"
+        android:name="com.minseongkim.movie_sample.presentation.ui.DetailFragment"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" />
     <fragment
         android:id="@+id/likeFragment"
-        android:name="com.minseongkim.movie_sample.presentation.LikeFragment"
+        android:name="com.minseongkim.movie_sample.presentation.ui.LikeFragment"
         android:label="fragment_like"
         tools:layout="@layout/fragment_like" />
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.minseongkim.movie_sample.presentation.SearchFragment"
+        android:name="com.minseongkim.movie_sample.presentation.ui.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" />
     <fragment
         android:id="@+id/settingFragment"
-        android:name="com.minseongkim.movie_sample.presentation.SettingFragment"
+        android:name="com.minseongkim.movie_sample.presentation.ui.SettingFragment"
         android:label="fragment_setting"
         tools:layout="@layout/fragment_setting" />
 </navigation>

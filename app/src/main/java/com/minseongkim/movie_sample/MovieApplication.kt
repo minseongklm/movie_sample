@@ -1,4 +1,4 @@
-package com.minseongkim.movie_sample.di
+package com.minseongkim.movie_sample
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

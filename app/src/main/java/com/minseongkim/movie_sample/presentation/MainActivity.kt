@@ -1,7 +1,9 @@
-package com.minseongkim.movie_sample.presentation.ui
+package com.minseongkim.movie_sample.presentation
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.minseongkim.movie_sample.BuildConfig.TMDB_API_KEY
 import com.minseongkim.movie_sample.R
 
 /**

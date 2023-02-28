@@ -7,12 +7,14 @@ import android.view.ViewGroup
 import com.minseongkim.movie_sample.R
 import com.minseongkim.movie_sample.databinding.FragmentDetailBinding
 import com.minseongkim.movie_sample.presentation.base.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * [DetailFragment] is screen for movie detail information.
  *
  * provide information to movie's detail and related movies.
  */
+@AndroidEntryPoint
 class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_detail) {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,

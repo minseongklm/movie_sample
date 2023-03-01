@@ -1,10 +1,10 @@
 package com.minseongkim.movie_sample.presentation.di
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import com.minseongkim.movie_sample.data.datasource.RemoteDatasource
 import com.minseongkim.movie_sample.data.network.MovieApi
 import com.minseongkim.movie_sample.data.network.MovieInterceptor
 import com.minseongkim.movie_sample.data.network.MovieService
+import com.minseongkim.movie_sample.data.network.RemoteDatasource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -52,7 +52,7 @@ object RemoteModule {
         // this Json set for not required data.
         val format = Json { ignoreUnknownKeys = true }
         return Retrofit.Builder()
-            .baseUrl("${MovieApi.BASE_URL}/${MovieApi.SHARED_URL}")
+            .baseUrl(MovieApi.BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(format.asConverterFactory(contentType))
             .build()

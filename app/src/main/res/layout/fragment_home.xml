@@ -2,18 +2,23 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data></data>
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.minseongkim.movie_sample.presentation.viewmodel.MovieViewModel" />
+    </data>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".presentation.ui.HomeFragment">
 
-        <!-- TODO: Update blank fragment layout -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment" />
+            android:gravity="center"
+            android:textSize="18sp" />
 
     </FrameLayout>
 

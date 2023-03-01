@@ -1,21 +1,31 @@
 package com.minseongkim.movie_sample.presentation.di
 
-import com.minseongkim.movie_sample.data.repository.MovieRepositoryImpl
-import com.minseongkim.movie_sample.domain.repository.MovieRepository
-import dagger.Binds
+import com.minseongkim.movie_sample.data.MovieRepository
+import com.minseongkim.movie_sample.data.MovieRepositoryImpl
+import com.minseongkim.movie_sample.data.local.LocalDatasource
+import com.minseongkim.movie_sample.data.network.RemoteDatasource
 import dagger.Module
+import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class RepositoryModule {
+object RepositoryModule {
 
     /**
      * Dependency Inject in [MovieRepository] Use Binds.
      */
-    @Binds
+    @Provides
     @Singleton
-    abstract fun provideMovieRepository(repositoryImpl: MovieRepositoryImpl): MovieRepository
+    fun provideMovieRepository(
+        localDatasource: LocalDatasource,
+        remoteDatasource: RemoteDatasource,
+    ): MovieRepository {
+        return MovieRepositoryImpl(
+            localDatasource,
+            remoteDatasource,
+        )
+    }
 }

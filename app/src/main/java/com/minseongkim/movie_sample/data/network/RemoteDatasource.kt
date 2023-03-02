@@ -12,21 +12,17 @@ class RemoteDatasource @Inject constructor(private val service: MovieService) {
 
     suspend fun getMoviesByComing(): List<MovieRemote> {
         val movies = service.getMoviesByUpComing().body() ?: emptyList()
-        if (movies.isNotEmpty()) {
-            return movies
-        } else {
-            throw IllegalStateException("Failed get remote movie data.")
-        }
+        return movieEmptyValidate(movies)
     }
 
-    suspend fun getMoviesByPopular() = flow {
-        val movies = service.getMoviesByPopular()
-        emit(movies)
+    suspend fun getMoviesByPopular(): List<MovieRemote> {
+        val movies = service.getMoviesByPopular().body() ?: emptyList()
+        return movieEmptyValidate(movies)
     }
 
-    suspend fun getMoviesByRate() = flow {
-        val movies = service.getMoviesByTopRating()
-        emit(movies)
+    suspend fun getMoviesByRate(): List<MovieRemote> {
+        val movies = service.getMoviesByTopRating().body() ?: emptyList()
+        return movieEmptyValidate(movies)
     }
 
     suspend fun getMovieDetail(movieId: Int) = flow {
@@ -47,4 +43,11 @@ class RemoteDatasource @Inject constructor(private val service: MovieService) {
         TODO("Not yet implemented")
     }
 
+    fun movieEmptyValidate(movieList: List<MovieRemote>): List<MovieRemote> {
+        if (movieList.isNotEmpty()) {
+            return movieList
+        } else {
+            throw IllegalAccessException("Failed get remote movie data.")
+        }
+    }
 }

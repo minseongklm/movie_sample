@@ -3,7 +3,7 @@ package com.minseongkim.movie_sample.presentation.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.minseongkim.movie_sample.data.MovieRepository
-import com.minseongkim.movie_sample.presentation.model.Movie
+import com.minseongkim.movie_sample.presentation.model.Movies
 import com.minseongkim.movie_sample.presentation.util.Async
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 
 data class MovieUiState(
-    val movies: List<Movie> = emptyList(),
+    val movies: List<Movies> = emptyList(),
     val isLoading: Boolean = false,
     val message: Int? = null
 )
@@ -27,15 +27,17 @@ class MovieViewModel @Inject constructor(
     private val _message: MutableStateFlow<Int?> = MutableStateFlow(null)
     private val _isLoading: MutableStateFlow<Boolean> = MutableStateFlow(false)
     private val _moviesAsync =
-        combine(upcomingMovie(), popularMovie(), topRatingMovie()) { c, p, r -> c + p + r }
+        combine(upcomingMovie(), popularMovie(), topRatingMovie()) { c, p, r ->
+            listOf(c, p, r)
+        }
             .map { Async.Success(it) }
-            .catch<Async<List<Movie>>> { emit(Async.Error(1)) }
+            .catch<Async<List<Movies>>> { emit(Async.Error(1)) }
 
     val uiState: StateFlow<MovieUiState> = combine(
         _isLoading, _message, _moviesAsync
     ) { loading, message, movies ->
         when (movies) {
-            Async.Loading -> {
+            is Async.Loading -> {
                 MovieUiState(isLoading = true)
             }
             is Async.Error -> {
@@ -55,15 +57,15 @@ class MovieViewModel @Inject constructor(
         initialValue = MovieUiState(isLoading = true)
     )
 
-    private fun upcomingMovie(): Flow<List<Movie>> {
+    private fun upcomingMovie(): Flow<Movies> {
         return repository.getMoviesByComing()
     }
 
-    private fun popularMovie(): Flow<List<Movie>> {
+    private fun popularMovie(): Flow<Movies> {
         return repository.getMoviesByPopular()
     }
 
-    private fun topRatingMovie(): Flow<List<Movie>> {
+    private fun topRatingMovie(): Flow<Movies> {
         return repository.getMoviesByRate()
     }
 }

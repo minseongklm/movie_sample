@@ -4,6 +4,7 @@ import com.minseongkim.movie_sample.data.model.*
 import com.minseongkim.movie_sample.presentation.model.Actor
 import com.minseongkim.movie_sample.presentation.model.Movie
 import com.minseongkim.movie_sample.presentation.model.MovieDetail
+import com.minseongkim.movie_sample.presentation.model.Movies
 
 @JvmName("movieLocal")
 fun List<MovieLocal>.wrapUiModel(): List<Movie> {
@@ -77,4 +78,10 @@ fun List<ActorRemote>.wrapUiModel(): List<Actor> {
 @JvmName("movieGenre")
 fun List<Genre>.wrapUiModel(): List<String> {
     return this.map { it.name }
+}
+
+
+@JvmName("movieToMovies")
+fun List<Movie>.wrapToMovies(section: Section): Movies {
+    return Movies(section = section.name, movies = this)
 }

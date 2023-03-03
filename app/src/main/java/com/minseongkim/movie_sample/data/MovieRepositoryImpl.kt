@@ -3,6 +3,8 @@ package com.minseongkim.movie_sample.data
 import com.minseongkim.movie_sample.data.local.LocalDatasource
 import com.minseongkim.movie_sample.data.model.Section
 import com.minseongkim.movie_sample.data.network.RemoteDatasource
+import com.minseongkim.movie_sample.data.wrapper.wrapToMovies
+import com.minseongkim.movie_sample.data.wrapper.wrapUiModel
 import com.minseongkim.movie_sample.presentation.model.Movie
 import com.minseongkim.movie_sample.presentation.model.Movies
 import kotlinx.coroutines.flow.Flow
@@ -22,24 +24,24 @@ class MovieRepositoryImpl @Inject constructor(
     override fun getMoviesByComing(): Flow<Movies> = flow {
         // Todo: first, try get movies data from local but if it null, request remote data.
         // Todo: create remote -> local wrapper
-//        val remoteMovie = remoteDatasource.getMoviesByComing().wrapUiModel(Section.UPCOMING)
-//        val remoteMovies = remoteMovie.wrapToMovies(Section.UPCOMING)
-//        emit(remoteMovies)
-        emit(upcomingMock)
+        val remoteMovie = remoteDatasource.getMoviesByComing().wrapUiModel(Section.UPCOMING)
+        val remoteMovies = remoteMovie.wrapToMovies(Section.UPCOMING)
+        emit(remoteMovies)
+//        emit(upcomingMock)
     }
 
     override fun getMoviesByPopular(): Flow<Movies> = flow {
-//        val remoteMovie = remoteDatasource.getMoviesByPopular().wrapUiModel(Section.POPULAR)
-//        val remoteMovies = remoteMovie.wrapToMovies(Section.POPULAR)
-//        emit(remoteMovies)
-        emit(popularMock)
+        val remoteMovie = remoteDatasource.getMoviesByPopular().wrapUiModel(Section.POPULAR)
+        val remoteMovies = remoteMovie.wrapToMovies(Section.POPULAR)
+        emit(remoteMovies)
+//        emit(popularMock)
     }
 
     override fun getMoviesByRate(): Flow<Movies> = flow {
-//        val remoteMovie = remoteDatasource.getMoviesByRate().wrapUiModel(Section.TOPRATE)
-//        val remoteMovies = remoteMovie.wrapToMovies(Section.TOPRATE)
-//        emit(remoteMovies)
-        emit(topRatingMock)
+        val remoteMovie = remoteDatasource.getMoviesByRate().wrapUiModel(Section.TOPRATE)
+        val remoteMovies = remoteMovie.wrapToMovies(Section.TOPRATE)
+        emit(remoteMovies)
+//        emit(topRatingMock)
     }
 
     override fun getMovieDetail(movieId: Int) {

@@ -5,11 +5,6 @@ import okhttp3.Response
 import okhttp3.ResponseBody.Companion.toResponseBody
 import org.json.JSONObject
 
-
-enum class Key(value: String) {
-    RESULT("results"), BACKDROP("backdrops"), CAST("cast");
-}
-
 /**
  * Interceptor for okHttp.
  */
@@ -35,7 +30,7 @@ class MovieInterceptor : Interceptor {
     }
 
     companion object {
-        const val KEY_RESULT = "result"
+        const val KEY_RESULT = "results"
         const val KEY_BACKDROP = "backdrops"
         const val KEY_CAST = "cast"
         const val EMPTY_JSON = "{}"

@@ -1,5 +1,6 @@
 package com.minseongkim.movie_sample.presentation.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.minseongkim.movie_sample.data.MovieRepository
@@ -28,9 +29,13 @@ class MovieViewModel @Inject constructor(
     private val _isLoading: MutableStateFlow<Boolean> = MutableStateFlow(false)
     private val _moviesAsync =
         combine(upcomingMovie(), popularMovie(), topRatingMovie()) { c, p, r ->
+            Log.d("TAG", ": init")
             listOf(c, p, r)
         }
-            .map { Async.Success(it) }
+            .map {
+                Log.d("TAG", ": $it")
+                Async.Success(it)
+            }
             .catch<Async<List<Movies>>> { emit(Async.Error(1)) }
 
     val uiState: StateFlow<MovieUiState> = combine(
@@ -56,6 +61,9 @@ class MovieViewModel @Inject constructor(
         started = SharingStarted.WhileSubscribed(5000L),
         initialValue = MovieUiState(isLoading = true)
     )
+
+    val testUrl = "/vSdzWYiU5EmxxsQPUmBg6i20Xcd.jpg"
+    val testBackground = "/yiNSuWLgdPNao5nnR5RvTIX1jWf.jpg"
 
     private fun upcomingMovie(): Flow<Movies> {
         return repository.getMoviesByComing()

@@ -43,3 +43,17 @@ data class Actor(
 enum class LayoutStyle {
     TOP, NORMAL;
 }
+
+//{
+//    "backdrop_path": "/yiNSuWLgdPNao5nnR5RvTIX1jWf.jpg",
+//    "id": 617882,
+//    "original_language": "ko",
+//    "original_title": "소울메이트",
+//    "overview": "A movie about two friends who first met at the age of 13, looking back on the nature of their relationship through 14 years of meeting and separation, friendship and love, yearning and jealousy.",
+//    "poster_path": "/vSdzWYiU5EmxxsQPUmBg6i20Xcd.jpg",
+//    "release_date": "2023-03-15",
+//    "title": "Soulmate",
+//    "video": false,
+//    "vote_average": 0,
+//    "vote_count": 0
+//},

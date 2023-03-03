@@ -9,7 +9,6 @@ import javax.inject.Inject
  */
 class RemoteDatasource @Inject constructor(private val service: MovieService) {
 
-
     suspend fun getMoviesByComing(): List<MovieRemote> {
         val movies = service.getMoviesByUpComing().body() ?: emptyList()
         return movieEmptyValidate(movies)

@@ -1,5 +1,7 @@
 package com.minseongkim.movie_sample.data.local
 
+import com.minseongkim.movie_sample.data.model.MovieLocal
+import com.minseongkim.movie_sample.data.model.Section
 import javax.inject.Inject
 
 /**
@@ -10,4 +12,11 @@ class LocalDatasource @Inject constructor(
     private val actorDao: ActorDao,
 ) {
 
+    suspend fun insertMovies(movies: List<MovieLocal>) {
+        movieDao.insertMovies(*movies.toTypedArray())
+    }
+
+    suspend fun getMoviesBySection(section: Section): List<MovieLocal> {
+        return movieDao.getMoviesBySection(section.name)
+    }
 }

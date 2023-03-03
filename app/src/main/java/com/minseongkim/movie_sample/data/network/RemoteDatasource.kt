@@ -1,7 +1,15 @@
 package com.minseongkim.movie_sample.data.network
 
 import com.minseongkim.movie_sample.data.model.MovieRemote
+import com.minseongkim.movie_sample.data.model.Section
+import com.minseongkim.movie_sample.data.wrapper.wrapToMovies
+import com.minseongkim.movie_sample.data.wrapper.wrapUiModel
+import com.minseongkim.movie_sample.presentation.model.LayoutStyle
+import com.minseongkim.movie_sample.presentation.model.Movie
+import com.minseongkim.movie_sample.presentation.model.Movies
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import retrofit2.Response
 import javax.inject.Inject
 
 /**
@@ -11,7 +19,11 @@ class RemoteDatasource @Inject constructor(private val service: MovieService) {
 
     suspend fun getMoviesByComing(): List<MovieRemote> {
         val movies = service.getMoviesByUpComing().body() ?: emptyList()
-        return movieEmptyValidate(movies)
+        return if (movies.size > 9) {
+            movieEmptyValidate(movies.slice(0..9))
+        } else {
+            movies
+        }
     }
 
     suspend fun getMoviesByPopular(): List<MovieRemote> {

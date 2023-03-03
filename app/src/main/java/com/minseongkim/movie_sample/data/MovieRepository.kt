@@ -1,5 +1,6 @@
 package com.minseongkim.movie_sample.data
 
+import com.minseongkim.movie_sample.data.model.Section
 import com.minseongkim.movie_sample.presentation.model.Movies
 import kotlinx.coroutines.flow.Flow
 
@@ -8,11 +9,11 @@ import kotlinx.coroutines.flow.Flow
  */
 interface MovieRepository {
 
-    fun getMoviesByComing(): Flow<Movies>
+    fun getMoviesByComing(section: Section): Flow<Movies>
 
-    fun getMoviesByPopular(): Flow<Movies>
+    fun getMoviesByPopular(section: Section): Flow<Movies>
 
-    fun getMoviesByRate(): Flow<Movies>
+    fun getMoviesByRate(section: Section): Flow<Movies>
 
     fun getMovieDetail(movieId: Int): Unit
 

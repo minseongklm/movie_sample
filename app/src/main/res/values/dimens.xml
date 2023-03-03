@@ -11,12 +11,17 @@
 
     <!-- Width and height -->
     <dimen name="main_image_height">560dp</dimen>
-    <dimen name="poster_width">120dp</dimen>
-    <dimen name="poster_height">160dp</dimen>
+    <dimen name="poster_default_width">120dp</dimen>
+    <dimen name="poster_default_height">160dp</dimen>
+
+    <dimen name="poster_top_width">160dp</dimen>
+    <dimen name="poster_top_height">200dp</dimen>
 
     <!-- Text -->
     <dimen name="font_small">16sp</dimen>
     <dimen name="font_medium">18sp</dimen>
     <dimen name="font_large">20sp</dimen>
     <dimen name="font_header">22sp</dimen>
+
+    <dimen name="font_poster_number">128sp</dimen>
 </resources>

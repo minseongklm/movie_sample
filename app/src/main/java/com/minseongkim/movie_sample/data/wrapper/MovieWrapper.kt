@@ -1,28 +1,45 @@
 package com.minseongkim.movie_sample.data.wrapper
 
 import com.minseongkim.movie_sample.data.model.*
-import com.minseongkim.movie_sample.presentation.model.Actor
-import com.minseongkim.movie_sample.presentation.model.Movie
-import com.minseongkim.movie_sample.presentation.model.MovieDetail
-import com.minseongkim.movie_sample.presentation.model.Movies
+import com.minseongkim.movie_sample.presentation.model.*
 
 @JvmName("movieLocal")
-fun List<MovieLocal>.wrapUiModel(): List<Movie> {
+fun List<MovieLocal>.wrapUiModel(
+    layoutType: LayoutStyle = LayoutStyle.NORMAL
+): List<Movie> {
     return this.map { movieData ->
         Movie(
             id = movieData.id,
             posterImage = movieData.posterImg,
-            section = movieData.section
+            section = movieData.section,
+            layoutType = layoutType
         )
     }
 }
 
 @JvmName("movieRemote")
-fun List<MovieRemote>.wrapUiModel(section: Section): List<Movie> {
+fun List<MovieRemote>.wrapUiModel(
+    section: Section,
+    layoutType: LayoutStyle = LayoutStyle.NORMAL
+): List<Movie> {
     return this.map { movieData ->
         Movie(
             id = movieData.id,
             posterImage = movieData.posterImage,
+            section = section.name,
+            layoutType = layoutType
+        )
+    }
+}
+
+@JvmName("remoteToLocal")
+fun List<MovieRemote>.wrapLocalModel(
+    section: Section
+): List<MovieLocal> {
+    return this.map { movieRemote ->
+        MovieLocal(
+            id = movieRemote.id,
+            posterImg = movieRemote.posterImage,
             section = section.name
         )
     }

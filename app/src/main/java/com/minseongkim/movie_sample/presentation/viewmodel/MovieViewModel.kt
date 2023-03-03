@@ -1,9 +1,9 @@
 package com.minseongkim.movie_sample.presentation.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.minseongkim.movie_sample.data.MovieRepository
+import com.minseongkim.movie_sample.data.model.Section
 import com.minseongkim.movie_sample.presentation.model.Movies
 import com.minseongkim.movie_sample.presentation.util.Async
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -29,13 +29,9 @@ class MovieViewModel @Inject constructor(
     private val _isLoading: MutableStateFlow<Boolean> = MutableStateFlow(false)
     private val _moviesAsync =
         combine(upcomingMovie(), popularMovie(), topRatingMovie()) { c, p, r ->
-            Log.d("TAG", ": init")
             listOf(c, p, r)
         }
-            .map {
-                Log.d("TAG", ": $it")
-                Async.Success(it)
-            }
+            .map { Async.Success(it) }
             .catch<Async<List<Movies>>> { emit(Async.Error(1)) }
 
     val uiState: StateFlow<MovieUiState> = combine(
@@ -66,14 +62,14 @@ class MovieViewModel @Inject constructor(
     val testBackground = "/yiNSuWLgdPNao5nnR5RvTIX1jWf.jpg"
 
     private fun upcomingMovie(): Flow<Movies> {
-        return repository.getMoviesByComing()
+        return repository.getMoviesByComing(Section.UPCOMING)
     }
 
     private fun popularMovie(): Flow<Movies> {
-        return repository.getMoviesByPopular()
+        return repository.getMoviesByPopular(Section.POPULAR)
     }
 
     private fun topRatingMovie(): Flow<Movies> {
-        return repository.getMoviesByRate()
+        return repository.getMoviesByRate(Section.TOPRATE)
     }
 }

@@ -4,7 +4,6 @@ import com.minseongkim.movie_sample.data.model.Section
 
 data class Movies(
     val section: String = Section.UPCOMING.name,
-    val layoutType: LayoutStyle = LayoutStyle.NORMAL,
     val movies: List<Movie> = emptyList(),
 )
 
@@ -15,6 +14,7 @@ data class Movie(
     val id: Int = 0,
     val posterImage: String = "",
     val section: String = Section.UPCOMING.name,
+    val layoutType: LayoutStyle = LayoutStyle.NORMAL,
 )
 
 /**
@@ -40,8 +40,8 @@ data class Actor(
     val profileImage: String = ""
 )
 
-enum class LayoutStyle {
-    TOP, NORMAL;
+enum class LayoutStyle(val value: Int) {
+    TOP(0), NORMAL(1);
 }
 
 //{

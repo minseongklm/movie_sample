@@ -20,8 +20,8 @@ fun AppCompatImageView.bindMainImage(uri: String) {
 
 @BindingAdapter("app:posterImage")
 fun AppCompatImageView.bindPosterImage(uri: String) {
-    val width = resources.getDimension(R.dimen.poster_width).toInt()
-    val height = resources.getDimension(R.dimen.poster_height).toInt()
+    val width = resources.getDimension(R.dimen.poster_default_width).toInt()
+    val height = resources.getDimension(R.dimen.poster_default_height).toInt()
     uri.let {
         Glide.with(context)
             .load("${MovieApi.POSTER_BASE_URL}${uri}")

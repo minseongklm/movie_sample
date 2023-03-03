@@ -55,5 +55,7 @@ data class ActorLocal(
  * [Section] divides where the movie data came from.
  */
 enum class Section {
-    UPCOMING, POPULAR, TOPRATE;
+    UPCOMING,
+    POPULAR,
+    TOPRATE;
 }

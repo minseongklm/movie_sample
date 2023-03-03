@@ -8,6 +8,6 @@
 
     <!-- content description -->
     <string name="movie_list">movie_list</string>
-
+    <string name="movies">Movies</string>
     <!-- Genre -->
 </resources>

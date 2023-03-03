@@ -7,6 +7,7 @@ import com.minseongkim.movie_sample.data.model.Section
 import com.minseongkim.movie_sample.presentation.model.Movies
 import com.minseongkim.movie_sample.presentation.util.Async
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
@@ -45,6 +46,7 @@ class MovieViewModel @Inject constructor(
                 MovieUiState(message = movies.errorMessage)
             }
             is Async.Success -> {
+                delay(2000L)
                 MovieUiState(
                     movies = movies.data,
                     isLoading = loading,

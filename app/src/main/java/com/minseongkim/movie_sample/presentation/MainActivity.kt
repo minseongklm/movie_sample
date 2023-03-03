@@ -3,6 +3,8 @@ package com.minseongkim.movie_sample.presentation
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
@@ -27,5 +29,15 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         val appBarConfiguration = AppBarConfiguration(navController.graph)
         findViewById<Toolbar>(R.id.toolbar)
             .setupWithNavController(navController, appBarConfiguration)
+
+
+        /**
+         * Navigation set custom icon.
+         */
+        navController.addOnDestinationChangedListener { _, _, _ ->
+            findViewById<Toolbar>(
+                R.id.toolbar
+            ).setNavigationIcon(R.drawable.logo_wanted_24)
+        }
     }
 }

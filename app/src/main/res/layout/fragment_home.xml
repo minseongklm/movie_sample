@@ -96,6 +96,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/movie_main_image"
                 app:movieMainItems="@{viewModel.uiState}"
+                android:clipToPadding="true"
+                android:paddingBottom="?attr/actionBarSize"
                 tools:listitem="@layout/item_movie_home" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 

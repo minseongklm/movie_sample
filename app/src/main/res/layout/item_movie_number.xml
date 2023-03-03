@@ -22,23 +22,32 @@
             android:layout_height="200dp"
             android:background="@color/black"
             android:includeFontPadding="false"
+            android:paddingStart="0dp"
             android:paddingEnd="-16dp"
-            android:textSize="188sp"
+            android:textSize="@dimen/font_poster_number"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
             tools:text="1" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/movie_poster"
-            android:layout_width="@dimen/poster_top_width"
-            android:layout_height="@dimen/poster_top_height"
-            android:scaleType="centerCrop"
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="8dp"
+            android:backgroundTint="@color/skeleton"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/movie_number"
-            app:layout_constraintTop_toTopOf="@+id/movie_number"
-            app:posterImage="@{movie.posterImage}" />
+            app:layout_constraintTop_toTopOf="@+id/movie_number">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/movie_poster"
+                android:layout_width="@dimen/poster_top_width"
+                android:layout_height="@dimen/poster_top_height"
+                android:scaleType="centerCrop"
+                app:posterImage="@{movie.posterImage}" />
+
+        </androidx.cardview.widget.CardView>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
